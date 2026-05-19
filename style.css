@@ -98,7 +98,7 @@ main {
 
 .times-area {
   display: flex;
-  flex-wrap: wrap; /* Saatler çok fazlaysa alt satıra geçmesi için */
+  flex-wrap: wrap; /*Saatler çok fazlaysa alt satıra geçmesi için */
   gap: 8px;
 }
 
