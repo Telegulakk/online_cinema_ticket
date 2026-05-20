@@ -77,24 +77,131 @@ function sayfaBaslat() {
       <p>Koltuk: ${koltuk}</p>
       <h3>Toplam Tutar: ${koltuk.split(",").length * 300} TL</h3>
     `;
+
+    // --- Input formatlama ---
+    const cardNumberInput = document.getElementById("card-number");
+    if (cardNumberInput) {
+      cardNumberInput.addEventListener("input", () => {
+        let val = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+        cardNumberInput.value = val.match(/.{1,4}/g)?.join(" ") || val;
+      });
+    }
+
+    const expiryInput = document.getElementById("expiry-date");
+    if (expiryInput) {
+      expiryInput.addEventListener("input", (e) => {
+        let val = expiryInput.value.replace(/\D/g, "").slice(0, 4);
+        if (val.length >= 2) {
+          expiryInput.value = val.slice(0, 2) + "/" + val.slice(2);
+        } else {
+          expiryInput.value = val;
+        }
+      });
+    }
+
+    const cvvInput = document.getElementById("cvv");
+    if (cvvInput) {
+      cvvInput.addEventListener("input", () => {
+        cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 3);
+      });
+    }
+
+    const cardholderInput = document.getElementById("cardholder-name");
+    const telefonNo = document.getElementById("phone");
+    if (telefonNo) {
+      telefonNo.addEventListener("input", () => {
+        telefonNo.value = telefonNo.value.replace(/\D/g, "").slice(0, 10);
+      });
+    }
+
+    // --- Ödeme butonu ---
+    const odemeButon = document.getElementById("pay-button");
+    if (odemeButon) {
+      odemeButon.addEventListener("click", () => {
+        const ad = cardholderInput?.value.trim() || "";
+        const kartNo = cardNumberInput?.value.replace(/\s/g, "") || "";
+        const sonKullanma = expiryInput?.value || "";
+        const cvv = cvvInput?.value || "";
+
+        if (ad.length < 3) {
+          alert("Lütfen kart sahibinin adını giriniz.");
+          return;
+        }
+        if (kartNo.length !== 16) {
+          alert("Kart numarası 16 haneli olmalıdır.");
+          return;
+        }
+
+        const [ay, yil] = sonKullanma.split("/");
+        if (!ay || !yil || yil.length !== 2) {
+          alert("Son kullanma tarihi AA/YY formatında olmalıdır.");
+          return;
+        }
+        const buAy = new Date().getMonth() + 1;
+        const buYil = new Date().getFullYear() % 100;
+        if (parseInt(yil) < buYil || (parseInt(yil) === buYil && parseInt(ay) < buAy)) {
+          alert("Kartınızın son kullanma tarihi geçmiş.");
+          return;
+        }
+
+        if (cvv.length !== 3) {
+          alert("CVV 3 haneli olmalıdır.");
+          return;
+        }
+
+        // Validasyon geçildikten sonra model aç
+        const model = document.getElementById("sms-model");
+        model.classList.add("acik");
+
+        const smsKodInput = document.getElementById("sms-kod");
+        const smsHata = document.getElementById("sms-hata");
+
+        // Sadece rakam, max 6 hane
+        smsKodInput.addEventListener("input", () => {
+          smsKodInput.value = smsKodInput.value.replace(/\D/g, "").slice(0, 6);
+        });
+
+        document.getElementById("sms-iptal").addEventListener("click", () => {
+          model.classList.remove("acik");
+          smsKodInput.value = "";
+          smsHata.textContent = "";
+        });
+
+        document.getElementById("sms-onayla").addEventListener("click", () => {
+          if (smsKodInput.value !== "123456") {
+            smsHata.textContent = "Hatalı kod. Lütfen tekrar deneyiniz.";
+            return;
+          }
+
+          model.classList.remove("acik");
+          alert("Ödeme işlemi başarılı! İyi seyirler!");
+          localStorage.removeItem("seciliFilm");
+          localStorage.removeItem("seciliSeans");
+          localStorage.removeItem("seciliKoltuklar");
+          localStorage.removeItem("seciliTarih");
+          window.location.href = "movies.html";
+        });
+      });
+    }
   }
 
   // Seats sayfası
-  if (document.querySelector(".seats")) {
+  const seats = document.querySelector(".seats");
+  if (seats) {
     const secilenKoltuklar = [];
-    const odemeButon = document.getElementById("choose-button");
+    const koltukSecButon = document.getElementById("choose-button");
     const doluKoltuklar = ["A2", "B4", "C1", "F3", "G7"];
 
-    if (odemeButon) odemeButon.disabled = true;
+    if (koltukSecButon) koltukSecButon.disabled = true;
 
     function butonGuncelle() {
-      if (!odemeButon) return;
+      if (!koltukSecButon) return;
       if (secilenKoltuklar.length > 0) {
-        odemeButon.disabled = false;
-        odemeButon.classList.add("active");
+        koltukSecButon.disabled = false;
+        koltukSecButon.classList.add("active");
       } else {
-        odemeButon.disabled = true;
-        odemeButon.classList.remove("active");
+        koltukSecButon.disabled = true;
+        koltukSecButon.classList.remove("active");
       }
     }
 
@@ -124,8 +231,8 @@ function sayfaBaslat() {
       });
     });
 
-    if (odemeButon) {
-      odemeButon.addEventListener("click", () => {
+    if (koltukSecButon) {
+      koltukSecButon.addEventListener("click", () => {
         window.location.href = "payment.html";
       });
     }
@@ -135,7 +242,7 @@ function sayfaBaslat() {
 document.addEventListener("click", (e) => {
   const timeLink = e.target.closest(".times-area a");
   if (timeLink) {
-    const movieTitle = timeLink.closest(".ticket-section").querySelector(".movie-title h2").textContent.trim();
+    const movieTitle = timeLink.closest(".ticket-section").querySelector(".movie-title h1").textContent.trim();
     const saat = timeLink.textContent.trim();
     localStorage.setItem("seciliFilm", movieTitle);
     localStorage.setItem("seciliSeans", saat);
@@ -161,8 +268,24 @@ document.addEventListener("DOMContentLoaded", () => {
   sayfaBaslat();
 });
 
+// f5
+window.addEventListener("load", () => {
+  const performans = performance.getEntriesByType("navigation")[0];
+  if (performans.type === "reload") {
+    window.location.href = "movies.html";
+  }
+});
+
 window.addEventListener("popstate", (e) => {
   if (e.state && e.state.path) {
+    const hedef = e.state.path.split("/").pop();
+    const simdiki = window.location.pathname.split("/").pop();
+
+    if (hedef === "payment.html" || simdiki === "payment.html") {
+      window.location.href = "movies.html";
+      return;
+    }
+
     loadContent(e.state.path, false);
   }
 });
@@ -232,7 +355,7 @@ function filmListesiOlustur(tarih) {
     .map(
       (film) => `
     <section class="ticket-section">
-      <a href="${film.trailer}" class="image-link" target="_blank"> <img class="float-resim" src="${film.resim}" alt="${film.alt}"></a>
+      <a href="${film.trailer}" class="image-link" loading="lazy" target="_blank"> <img class="float-resim" src="${film.resim}" alt="${film.alt}"></a>
 
       <article class="time-row-section">
         <header class="movie-title">
@@ -258,11 +381,30 @@ function filmListesiOlustur(tarih) {
       </article>
 
       <section class="description-section">
-        <div class="film-meta">
-          <span> ${film.kategori}</span>
-          <span> ${film.sure}</span>
-        </div>
-        <p>${film.aciklama}</p>
+        <aside class="film-info">
+            <section class="film-info-1">
+              <strong>Kategori: </strong>
+              <span>${film.kategori}</span>
+            </section>
+            <section class="film-info-2">
+              <strong>Süre: </strong>
+              <span>${film.sure}</span>
+            </section>
+        </aside>
+        <aside class="film-meta">
+          <section class="film-meta-1">
+            <strong>Yönetmen: </strong>
+            <span>${film.yonetmen}</span>
+          </section>
+          <section class="film-meta-2">
+            <strong>Oyuncular: </strong>
+            <span>${film.oyuncular.join(", ")}</span>
+          </section>
+        </aside>
+          <section class="film-meta-2">
+            <strong>Konu: </strong>
+            <span>${film.aciklama}</span>
+          </section>
       </section>
     </section> 
   `,
@@ -270,96 +412,300 @@ function filmListesiOlustur(tarih) {
     .join("");
 }
 
-const odemeButon = document.getElementById("pay-button");
-
-
-
-
-
-
-
-
-
 const filmVerisi = {
-  "2026-05-18": [
-    {
-      baslik: "Avatar: Fire and Ash",
-      resim: "media/AVATAR.jpg",
-      trailer: "https://youtu.be/nb_fFj_0rq8?si=zu7TA4vbWDHLrg4S",
-      alt: "Avatar: Fire and Ash",
-      aciklama: "Avatar: Fire and Ash, James Cameron'ın yönettiği bir bilim kurgu filmidir. Pandora gezegeninde geçer ve Na'vi halkının yaşamını konu alır.",
-      kategori: "Bilim Kurgu, Macera, Aksiyon",
-      sure: "162 dk",
-      turler: [
-        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "18:30", "21:30"] },
-        { ad: "2D - DUBLAJ", saatler: ["9:25", "10:30", "12:00", "14:45", "17:00"] },
-        { ad: "3D - DUBLAJ", saatler: ["9:00", "11:30", "15:00", "19:45"] },
-      ],
-    },
-    {
-      baslik: "Hamnet",
-      resim: "media/Hamnet.jpg",
-      trailer: "https://youtu.be/xYcgQMxQwmk?si=_gzsLjHKbOqB6pUZ",
-      alt: "Hamnet",
-      aciklama: "William Shakespeare'in oğlu Hamnet'in hayatını konu alan biyografik bir drama filmidir.",
-      kategori: "Drama, Tarih",
-      sure: "120 dk",
-      turler: [
-        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "18:30", "21:30"] },
-        { ad: "2D - DUBLAJ", saatler: ["9:25", "10:30", "12:00", "14:45", "17:00"] },
-      ],
-    },
-    {
-      baslik: "Doctor Strange",
-      resim: "media/drStrange.jpg",
-      trailer: "https://youtu.be/Lt-U_t2pUHI?si=MLZP0mchkkwu6LB3",
-      alt: "Doctor Strange",
-      aciklama: "Marvel Comics karakteri Doctor Stephen Strange'in maceralarını konu alan süper kahraman filmidir.",
-      kategori: "Bilim Kurgu, Aksiyon, Fantastik",
-      sure: "120 dk",
-      turler: [
-        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "18:30", "21:30"] },
-        { ad: "3D - DUBLAJ", saatler: ["9:00", "11:30", "15:00", "19:45"] },
-      ],
-    },
-  ],
-  "2026-05-19": [
-    {
-      baslik: "Doctor Strange",
-      resim: "media/drStrange.jpg",
-      trailer: "https://youtu.be/Lt-U_t2pUHI?si=MLZP0mchkkwu6LB3",
-      alt: "Doctor Strange",
-      aciklama: "Marvel Comics karakteri Doctor Stephen Strange'in maceralarını konu alan süper kahraman filmidir.",
-      kategori: "Bilim Kurgu, Aksiyon, Fantastik",
-      sure: "120 dk",
-      turler: [
-        { ad: "2D - DUBLAJ", saatler: ["10:00", "13:00", "16:00", "19:00"] },
-        { ad: "3D - DUBLAJ", saatler: ["11:00", "14:00", "18:00", "21:00"] },
-      ],
-    },
-    {
-      baslik: "Hamnet",
-      resim: "media/Hamnet.jpg",
-      trailer: "https://youtu.be/xYcgQMxQwmk?si=_gzsLjHKbOqB6pUZ",
-      alt: "Hamnet",
-      aciklama: "William Shakespeare'in oğlu Hamnet'in hayatını konu alan biyografik bir drama filmidir.",
-      kategori: "Drama, Tarih",
-      sure: "120 dk",
-      turler: [{ ad: "2D - ALTYAZILI", saatler: ["9:00", "12:00", "15:00", "18:00"] }],
-    },
-  ],
   "2026-05-20": [
     {
       baslik: "Avatar: Fire and Ash",
-      resim: "media/AVATAR.jpg",
+      resim: "media/AVATAR.webp",
       trailer: "https://youtu.be/nb_fFj_0rq8?si=zu7TA4vbWDHLrg4S",
       alt: "Avatar: Fire and Ash",
-      aciklama: "Avatar: Fire and Ash, James Cameron'ın yönettiği bir bilim kurgu filmidir.",
+      aciklama: "James Cameron'ın yönettiği bu devam filminde Pandora'nın derinliklerinde yeni tehditler baş gösterir.",
       kategori: "Bilim Kurgu, Macera, Aksiyon",
       sure: "162 dk",
+      yonetmen: "James Cameron",
+      oyuncular: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "18:30"] },
+        { ad: "3D - DUBLAJ", saatler: ["11:00", "14:00", "19:45"] },
+      ],
+    },
+    {
+      baslik: "Mortal Kombat 2",
+      resim: "media/mortalCombat2.webp",
+      trailer: "https://youtu.be/ZdC5mFHPldg?si=bNSX07ycjRWMYypO",
+      alt: "Mortal Kombat 2",
+      aciklama: "Turnuva sona ermedi. Yeni savaşçılar, yeni âlemler ve çok daha büyük bir tehlike savaş arenasını bekliyor.",
+      kategori: "Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Simon McQuoid",
+      oyuncular: ["Lewis Tan", "Jessica McNamee", "Josh Lawson"],
+      turler: [
+        { ad: "2D - DUBLAJ", saatler: ["10:00", "13:00", "16:00", "20:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["12:00", "17:30", "21:00"] },
+      ],
+    },
+  ],
+  "2026-05-21": [
+    {
+      baslik: "Hamnet",
+      resim: "media/Hamnet.webp",
+      trailer: "https://youtu.be/xYcgQMxQwmk?si=_gzsLjHKbOqB6pUZ",
+      alt: "Hamnet",
+      aciklama: "16. yüzyıl İngiltere'sinde genç Hamnet Shakespeare'in kısa ama derin izler bırakan hayatı.",
+      kategori: "Drama, Tarih",
+      sure: "120 dk",
+      yonetmen: "Chloé Zhao",
+      oyuncular: ["Paul Mescal", "Jessie Buckley", "Riz Ahmed"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:00", "12:00", "15:00", "18:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["10:30", "14:00", "17:00"] },
+      ],
+    },
+    {
+      baslik: "The Conjuring",
+      resim: "media/theConjuring.webp",
+      trailer: "https://youtu.be/ejMMn0t58Lc?si=p3gxvGG3w3SFTkYw",
+      alt: "The Conjuring",
+      aciklama: "Paranormal araştırmacılar Ed ve Lorraine Warren, Rhode Island'daki bir çiftlik evinde yaşayan aileye yardım etmek için korkunç bir davayla yüzleşir.",
+      kategori: "Korku, Gerilim",
+      sure: "112 dk",
+      yonetmen: "James Wan",
+      oyuncular: ["Patrick Wilson", "Vera Farmiga", "Ron Livingston"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["11:00", "15:00", "19:00", "22:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] },
+      ],
+    },
+    {
+      baslik: "Jujutsu Kaisen 0",
+      resim: "media/jjk0.webp",
+      trailer: "https://youtu.be/BllZmZQ3slE?si=FnBihwI4IZubPBh5",
+      alt: "Jujutsu Kaisen 0",
+      aciklama: "Yuta Okkotsu, kontrol edemediği güçlü bir lanet tarafından ele geçirilmiştir. Tokyo Jujutsu Lisesi'nde verilen eğitim onu kurtarabilir mi?",
+      kategori: "Animasyon, Aksiyon, Fantastik",
+      sure: "105 dk",
+      yonetmen: "Sunghoo Park",
+      oyuncular: ["Megumi Ogata", "Kana Hanazawa", "Takahiro Sakurai"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "13:30", "17:00", "20:30"] },
+        { ad: "2D - DUBLAJ", saatler: ["12:00", "15:30", "19:00"] },
+      ],
+    },
+  ],
+  "2026-05-22": [
+    {
+      baslik: "Doctor Strange",
+      resim: "media/drStrange.webp",
+      trailer: "https://youtu.be/Lt-U_t2pUHI?si=MLZP0mchkkwu6LB3",
+      alt: "Doctor Strange",
+      aciklama: "Başarılı cerrah Stephen Strange, geçirdiği kazanın ardından mistik güçler dünyasına adım atar.",
+      kategori: "Bilim Kurgu, Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Scott Derrickson",
+      oyuncular: ["Benedict Cumberbatch", "Chiwetel Ejiofor", "Tilda Swinton"],
+      turler: [
+        { ad: "2D - DUBLAJ", saatler: ["10:00", "13:00", "16:00", "19:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["11:30", "14:30", "18:00", "21:00"] },
+      ],
+    },
+    {
+      baslik: "Mortal Kombat 2",
+      resim: "media/mortalCombat2.webp",
+      trailer: "https://youtu.be/ZdC5mFHPldg?si=bNSX07ycjRWMYypO",
+      alt: "Mortal Kombat 2",
+      aciklama: "Turnuva sona ermedi. Yeni savaşçılar, yeni âlemler ve çok daha büyük bir tehlike savaş arenasını bekliyor.",
+      kategori: "Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Simon McQuoid",
+      oyuncular: ["Lewis Tan", "Jessica McNamee", "Josh Lawson"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "16:00", "20:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["11:00", "15:00", "19:30"] },
+      ],
+    },
+    {
+      baslik: "The Conjuring",
+      resim: "media/theConjuring.webp",
+      trailer: "https://youtu.be/ejMMn0t58Lc?si=p3gxvGG3w3SFTkYw",
+      alt: "The Conjuring",
+      aciklama: "Paranormal araştırmacılar Ed ve Lorraine Warren, Rhode Island'daki bir çiftlik evinde yaşayan aileye yardım etmek için korkunç bir davayla yüzleşir.",
+      kategori: "Korku, Gerilim",
+      sure: "112 dk",
+      yonetmen: "James Wan",
+      oyuncular: ["Patrick Wilson", "Vera Farmiga", "Ron Livingston"],
+      turler: [{ ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] }],
+    },
+  ],
+  "2026-05-23": [
+    {
+      baslik: "Avatar: Fire and Ash",
+      resim: "media/AVATAR.webp",
+      trailer: "https://youtu.be/nb_fFj_0rq8?si=zu7TA4vbWDHLrg4S",
+      alt: "Avatar: Fire and Ash",
+      aciklama: "James Cameron'ın yönettiği bu devam filminde Pandora'nın derinliklerinde yeni tehditler baş gösterir.",
+      kategori: "Bilim Kurgu, Macera, Aksiyon",
+      sure: "162 dk",
+      yonetmen: "James Cameron",
+      oyuncular: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["10:00", "13:30", "17:00", "20:30"] },
         { ad: "3D - DUBLAJ", saatler: ["11:00", "15:00", "19:00"] },
+      ],
+    },
+    {
+      baslik: "Jujutsu Kaisen 0",
+      resim: "media/jjk0.webp",
+      trailer: "https://youtu.be/BllZmZQ3slE?si=FnBihwI4IZubPBh5",
+      alt: "Jujutsu Kaisen 0",
+      aciklama: "Yuta Okkotsu, kontrol edemediği güçlü bir lanet tarafından ele geçirilmiştir. Tokyo Jujutsu Lisesi'nde verilen eğitim onu kurtarabilir mi?",
+      kategori: "Animasyon, Aksiyon, Fantastik",
+      sure: "105 dk",
+      yonetmen: "Sunghoo Park",
+      oyuncular: ["Megumi Ogata", "Kana Hanazawa", "Takahiro Sakurai"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:00", "12:00", "15:30", "19:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:00", "14:30", "18:00"] },
+      ],
+    },
+  ],
+  "2026-05-24": [
+    {
+      baslik: "Hamnet",
+      resim: "media/Hamnet.webp",
+      trailer: "https://youtu.be/xYcgQMxQwmk?si=_gzsLjHKbOqB6pUZ",
+      alt: "Hamnet",
+      aciklama: "16. yüzyıl İngiltere'sinde genç Hamnet Shakespeare'in kısa ama derin izler bırakan hayatı.",
+      kategori: "Drama, Tarih",
+      sure: "120 dk",
+      yonetmen: "Chloé Zhao",
+      oyuncular: ["Paul Mescal", "Jessie Buckley", "Riz Ahmed"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "13:00", "16:00", "19:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:30", "15:00", "18:30"] },
+      ],
+    },
+    {
+      baslik: "Doctor Strange",
+      resim: "media/drStrange.webp",
+      trailer: "https://youtu.be/Lt-U_t2pUHI?si=MLZP0mchkkwu6LB3",
+      alt: "Doctor Strange",
+      aciklama: "Başarılı cerrah Stephen Strange, geçirdiği kazanın ardından mistik güçler dünyasına adım atar.",
+      kategori: "Bilim Kurgu, Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Scott Derrickson",
+      oyuncular: ["Benedict Cumberbatch", "Chiwetel Ejiofor", "Tilda Swinton"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "21:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["11:00", "17:00", "20:00"] },
+      ],
+    },
+    {
+      baslik: "The Conjuring",
+      resim: "media/theConjuring.webp",
+      trailer: "https://youtu.be/ejMMn0t58Lc?si=p3gxvGG3w3SFTkYw",
+      alt: "The Conjuring",
+      aciklama: "Paranormal araştırmacılar Ed ve Lorraine Warren, Rhode Island'daki bir çiftlik evinde yaşayan aileye yardım etmek için korkunç bir davayla yüzleşir.",
+      kategori: "Korku, Gerilim",
+      sure: "112 dk",
+      yonetmen: "James Wan",
+      oyuncular: ["Patrick Wilson", "Vera Farmiga", "Ron Livingston"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["12:00", "16:00", "20:00", "22:30"] },
+        { ad: "2D - DUBLAJ", saatler: ["14:00", "18:00", "21:30"] },
+      ],
+    },
+  ],
+  "2026-05-25": [
+    {
+      baslik: "Jujutsu Kaisen 0",
+      resim: "media/jjk0.webp",
+      trailer: "https://youtu.be/BllZmZQ3slE?si=FnBihwI4IZubPBh5",
+      alt: "Jujutsu Kaisen 0",
+      aciklama: "Yuta Okkotsu, kontrol edemediği güçlü bir lanet tarafından ele geçirilmiştir. Tokyo Jujutsu Lisesi'nde verilen eğitim onu kurtarabilir mi?",
+      kategori: "Animasyon, Aksiyon, Fantastik",
+      sure: "105 dk",
+      yonetmen: "Sunghoo Park",
+      oyuncular: ["Megumi Ogata", "Kana Hanazawa", "Takahiro Sakurai"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "13:00", "16:00", "19:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:30", "15:00", "20:30"] },
+      ],
+    },
+    {
+      baslik: "Avatar: Fire and Ash",
+      resim: "media/AVATAR.webp",
+      trailer: "https://youtu.be/nb_fFj_0rq8?si=zu7TA4vbWDHLrg4S",
+      alt: "Avatar: Fire and Ash",
+      aciklama: "James Cameron'ın yönettiği bu devam filminde Pandora'nın derinliklerinde yeni tehditler baş gösterir.",
+      kategori: "Bilim Kurgu, Macera, Aksiyon",
+      sure: "162 dk",
+      yonetmen: "James Cameron",
+      oyuncular: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:00", "12:30", "16:00", "20:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["10:30", "14:00", "18:30"] },
+      ],
+    },
+    {
+      baslik: "Mortal Kombat 2",
+      resim: "media/mortalCombat2.webp",
+      trailer: "https://youtu.be/ZdC5mFHPldg?si=bNSX07ycjRWMYypO",
+      alt: "Mortal Kombat 2",
+      aciklama: "Turnuva sona ermedi. Yeni savaşçılar, yeni âlemler ve çok daha büyük bir tehlike savaş arenasını bekliyor.",
+      kategori: "Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Simon McQuoid",
+      oyuncular: ["Lewis Tan", "Jessica McNamee", "Josh Lawson"],
+      turler: [
+        { ad: "2D - DUBLAJ", saatler: ["11:00", "14:30", "18:00", "21:30"] },
+        { ad: "3D - DUBLAJ", saatler: ["13:00", "17:00", "20:30"] },
+      ],
+    },
+  ],
+  "2026-05-26": [
+    {
+      baslik: "The Conjuring",
+      resim: "media/theConjuring.webp",
+      trailer: "https://youtu.be/ejMMn0t58Lc?si=p3gxvGG3w3SFTkYw",
+      alt: "The Conjuring",
+      aciklama: "Paranormal araştırmacılar Ed ve Lorraine Warren, Rhode Island'daki bir çiftlik evinde yaşayan aileye yardım etmek için korkunç bir davayla yüzleşir.",
+      kategori: "Korku, Gerilim",
+      sure: "112 dk",
+      yonetmen: "James Wan",
+      oyuncular: ["Patrick Wilson", "Vera Farmiga", "Ron Livingston"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["11:00", "15:00", "19:00", "22:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["13:00", "17:30", "21:00"] },
+      ],
+    },
+    {
+      baslik: "Doctor Strange",
+      resim: "media/drStrange.webp",
+      trailer: "https://youtu.be/Lt-U_t2pUHI?si=MLZP0mchkkwu6LB3",
+      alt: "Doctor Strange",
+      aciklama: "Başarılı cerrah Stephen Strange, geçirdiği kazanın ardından mistik güçler dünyasına adım atar.",
+      kategori: "Bilim Kurgu, Aksiyon, Fantastik",
+      sure: "115 dk",
+      yonetmen: "Scott Derrickson",
+      oyuncular: ["Benedict Cumberbatch", "Chiwetel Ejiofor", "Tilda Swinton"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "13:30", "17:00"] },
+        { ad: "3D - DUBLAJ", saatler: ["12:00", "16:00", "20:30"] },
+      ],
+    },
+    {
+      baslik: "Jujutsu Kaisen 0",
+      resim: "media/jjk0.webp",
+      trailer: "https://youtu.be/BllZmZQ3slE?si=FnBihwI4IZubPBh5",
+      alt: "Jujutsu Kaisen 0",
+      aciklama: "Yuta Okkotsu, kontrol edemediği güçlü bir lanet tarafından ele geçirilmiştir. Tokyo Jujutsu Lisesi'nde verilen eğitim onu kurtarabilir mi?",
+      kategori: "Animasyon, Aksiyon, Fantastik",
+      sure: "105 dk",
+      yonetmen: "Sunghoo Park",
+      oyuncular: ["Megumi Ogata", "Kana Hanazawa", "Takahiro Sakurai"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "16:30", "20:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:00", "14:30", "18:30"] },
       ],
     },
   ],
