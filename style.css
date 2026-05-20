@@ -77,8 +77,8 @@ main {
 }
 
 .menu a.kilitli {
-  border-color: #555555;
-  color: #555555;
+  border-color: #ffffff;
+  color: #ffffff;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -108,7 +108,9 @@ main {
   padding: 5px 10px;
   border-radius: 10px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
 }
 
 .times-area a:hover {
@@ -137,7 +139,8 @@ main {
   color: white;
   padding: 10px 5px;
   border-radius: 5px;
-  text-decoration: none; /* Alt çizgiyi kaldır */
+  text-decoration: none;
+  text-shadow: #0c0c0c  1px 1px 1px;
 }
 
 .select-date-area a:hover {
@@ -215,32 +218,25 @@ main {
   margin: auto;
   width: 100%;
   max-width: 300px;
-  background-color: #494745;
   border-radius: 15px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 10px;
 }
 
+.description-section .film-info,
 .description-section .film-meta {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   padding-bottom: 10px;
   border-bottom: 1px solid #c46517;
-  margin-bottom: 10px;
 }
 
-.description-section .film-meta span {
-  font-size: 0.9 rem;
-  color: #cccccc;
-}
-
-.description-section p {
-  font-size: 0.88rem;
-  color: #dddddd;
-  line-height: 1.5;
+.description-section span{
+  font-size: 1rem;
+  color: #fcfcfc;
   margin: 0;
 }
 
@@ -250,11 +246,62 @@ main {
   gap: 16px;
 }
 
+.time-row-list strong {
+  color: #fcfcfc;
+}
+
 .time-row-section {
   display: flex;
   flex-direction: column;
   gap: 45px;
   margin-bottom: 0px;
+  max-width: fit-content;
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .ticket-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .float-resim {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .description-section {
+    max-width: 100%;
+  }
+
+  .time-row-section {
+    width: 100%;
+  }
+
+  .movie-title h2 {
+    min-width: unset;
+  }
+
+  .select-date-area {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .select-date-area a {
+    width: 90px;
+    font-size: small;
+  }
+
+  .menu {
+    gap: 0.5rem;
+  }
+
+  .menu a {
+    font-size: 0.7rem;
+    padding: 5px 7px;
+  }
 }
 
 .cinema-detail {
@@ -448,7 +495,7 @@ main {
 }
 
 .payment-summary {
-  background-color: #494745;
+  background-color: #a3a2a0;
   border-radius: 12px;
   padding: 16px 24px;
   width: 100%;
@@ -548,4 +595,98 @@ main {
 .seat-ex-occupied {
   background-color: #555555;
   border-color: #555555;
+}
+
+.model-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.model-overlay.acik {
+  display: flex;
+}
+
+.model-kutu {
+  background-color: #1a1a1a;
+  border: 1px solid #c46517;
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+.model-kutu h3 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.model-kutu p {
+  margin: 0;
+  color: #cccccc;
+  font-size: 0.9rem;
+}
+
+.mock-kod {
+  color: #c46517 !important;
+  font-size: 0.85rem !important;
+}
+
+#sms-kod {
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c46517;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.model-butonlar {
+  display: flex;
+  gap: 10px;
+}
+
+.model-butonlar button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#sms-onayla {
+  background-color: #c46517;
+  color: white;
+}
+
+#sms-onayla:hover {
+  background-color: #8d450a;
+}
+
+#sms-iptal {
+  background-color: #333333;
+  color: #cccccc;
+}
+
+#sms-iptal:hover {
+  background-color: #444444;
+}
+
+.sms-hata {
+  color: #ce2525 !important;
+  font-size: 0.85rem !important;
+  min-height: 18px;
 }
