@@ -15,17 +15,11 @@
         <a href="movies.html">
             <img class="logo" src="icons/scuu_cinema.webp" width="240" height="80" alt="logo">
         </a>   </header>
-
+        
     <nav class="menu">
-        <a href="movies.html">
-            <h1>Seans Seçimi</h1>
-        </a>
-        <a href="seats.html">
-            <h1>Koltuk Seçimi</h1>
-        </a>
-        <a href="payment.html">
-            <h1>Ödeme</h1>
-        </a>
+        <a href="movies.html"><span>Seans Seçimi</span></a>
+        <a href="seats.html"><span>Koltuk Seçimi</span></a>
+        <a href="payment.html"><span>Ödeme</span></a>
     </nav>
 
     <section class="model-overlay" id="sms-model">
@@ -45,23 +39,23 @@
         <section class="card-info">
             <section class="inputs">
                 <h3>Kart Sahibinin Adı</h3>
-                <input type="text" id="cardholder-name" placeholder="Kart Sahibinin Adı" required>
+                <input type="text" id="cardholder-name" placeholder="Kart Sahibinin Adı" inputmode="text" autocomplete="cc-name" required>
             </section>
             <section class="inputs">
                 <h3>Kart Numarası</h3>
-                <input type="text" id="card-number" placeholder="Kart Numarası" required>
+                <input type="text" id="card-number" placeholder="Kart Numarası" inputmode="numeric" autocomplete="cc-number" required>
             </section>
             <section class="inputs">
                 <h3>Son Kullanma Tarihi</h3>
-                <input type="text" id="expiry-date" placeholder="Son Kullanma Tarihi (AA/YY)" required>
+                <input type="text" id="expiry-date" placeholder="Son Kullanma Tarihi (AA/YY)" inputmode="numeric" autocomplete="cc-exp" required>
             </section>
             <section class="inputs">
                 <h3>CVV</h3>
-                <input type="text" id="cvv" placeholder="CVV" required>
+                <input type="text" id="cvv" placeholder="CVV" inputmode="numeric" autocomplete="cc-csc" required>
             </section>
             <section class="inputs">
                 <h3>Telefon </h3>
-                <input type="text" id="phone" placeholder="Telefon Numarası" required>
+                <input type="tel" id="phone" placeholder="Telefon Numarası" inputmode="tel" autocomplete="tel" required>
             </section>
         </section>
 
@@ -77,11 +71,11 @@
         </section>
 
         <section class="social-media-icons">
-            <a href="https://www.instagram.com/cumunivkurumsal/" loading="lazy" target="_blank" ><img src="icons\tiktok.webp" width="30" height="30" alt="tiktok"></a>
-            <a href="https://www.instagram.com/cumunivkurumsal/" loading="lazy" target="_blank"><img src="icons\instagram.webp" width="30" height="30" alt="Instagram"></a>
-            <a href="https://x.com/cumunivkurumsal" loading="lazy" target="_blank"><img src="icons\x.webp" width="30" height="30" alt="x"></a>
-            <a href="https://wa.me/901234567890" loading="lazy" target="_blank"><img src="icons/whatsapp.webp" width="30" height="30" alt="WhatsApp"></a>            
-            <a href="https://www.youtube.com/@cumunivkurumsal" loading="lazy" target="_blank"><img src="icons\yt.webp" width="45" height="30" alt="yt"></a>
+            <a href="https://www.instagram.com/cumunivkurumsal/" loading="lazy" target="_blank" ><img loading="lazy" src="icons/tiktok.webp" width="30" height="30" alt="tiktok"></a>
+            <a href="https://www.instagram.com/cumunivkurumsal/" loading="lazy" target="_blank"><img loading="lazy" src="icons/instagram.webp" width="30" height="30" alt="Instagram"></a>
+            <a href="https://x.com/cumunivkurumsal" loading="lazy" target="_blank"><img loading="lazy" src="icons/x.webp" width="30" height="30" alt="x"></a>
+            <a href="https://wa.me/901234567890" loading="lazy" target="_blank"><img loading="lazy" src="icons/whatsapp.webp" width="30" height="30" alt="WhatsApp"></a>            
+            <a href="https://www.youtube.com/@cumunivkurumsal" loading="lazy" target="_blank"><img loading="lazy" src="icons/yt.webp" width="45" height="30" alt="yt"></a>
         </section>
     </footer>
 
