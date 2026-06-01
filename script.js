@@ -1,4 +1,4 @@
-function loadContent(url, addHistory = true) {
+function icerigiYukle(url, addHistory = true) {
   const mainContainer = document.querySelector("main");
 
   fetch(url)
@@ -25,6 +25,8 @@ function loadContent(url, addHistory = true) {
     })
     .catch((err) => console.error("Yükleme hatası:", err));
 }
+
+
 
 function menuGuncelle() {
   const sayfaAdi = window.location.pathname.split("/").pop() || "movies.html";
@@ -54,6 +56,10 @@ function menuGuncelle() {
   });
 }
 
+
+
+
+
 function sayfaBaslat() {
   if (document.getElementById("date-area")) {
     const bugunAnahtari = tarihAnahtari(new Date());
@@ -63,7 +69,6 @@ function sayfaBaslat() {
     filmListesiOlustur(aktifTarih);
   }
 
-  // Payment sayfası
   const paymentSummary = document.querySelector(".payment-summary");
   if (paymentSummary) {
     const film = localStorage.getItem("seciliFilm") || "—";
@@ -78,7 +83,6 @@ function sayfaBaslat() {
       <h3>Toplam Tutar: ${koltuk.split(",").length * 300} TL</h3>
     `;
 
-    // --- Input formatlama ---
     const cardNumberInput = document.getElementById("card-number");
     if (cardNumberInput) {
       cardNumberInput.addEventListener("input", () => {
@@ -185,7 +189,6 @@ function sayfaBaslat() {
     }
   }
 
-  // Seats sayfası
   const seats = document.querySelector(".seats");
   if (seats) {
     const secilenKoltuklar = [];
@@ -239,6 +242,10 @@ function sayfaBaslat() {
   }
 }
 
+
+
+
+
 document.addEventListener("click", (e) => {
   const timeLink = e.target.closest(".times-area a");
   if (timeLink) {
@@ -259,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = link.getAttribute("href");
       if (target && !target.startsWith("http")) {
         e.preventDefault();
-        loadContent(target);
+        icerigiYukle(target);
       }
     });
   });
@@ -286,12 +293,12 @@ window.addEventListener("popstate", (e) => {
       return;
     }
 
-    loadContent(e.state.path, false);
+    icerigiYukle(e.state.path, false);
   }
 });
 
-const gunIsmi = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 
+const gunIsmi = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 function tarihEtiketi(date) {
   return `${date.getDate()} ${["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"][date.getMonth()]}`;
 }
@@ -344,6 +351,8 @@ function dateAreaOlustur() {
     dateArea.appendChild(a);
   }
 }
+
+
 
 function filmListesiOlustur(tarih) {
   const liste = document.getElementById("film-list");
@@ -413,7 +422,7 @@ function filmListesiOlustur(tarih) {
 }
 
 const filmVerisi = {
-  "2026-05-20": [
+  "2026-05-29": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -445,7 +454,7 @@ const filmVerisi = {
       ],
     },
   ],
-  "2026-05-21": [
+  "2026-05-30": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -492,7 +501,7 @@ const filmVerisi = {
       ],
     },
   ],
-  "2026-05-22": [
+  "2026-05-31": [
     {
       baslik: "Doctor Strange",
       resim: "media/drStrange.webp",
@@ -536,7 +545,7 @@ const filmVerisi = {
       turler: [{ ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] }],
     },
   ],
-  "2026-05-23": [
+  "2026-06-01": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -568,7 +577,7 @@ const filmVerisi = {
       ],
     },
   ],
-  "2026-05-24": [
+  "2026-06-02": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -615,7 +624,7 @@ const filmVerisi = {
       ],
     },
   ],
-  "2026-05-25": [
+  "2026-06-03": [
     {
       baslik: "Jujutsu Kaisen 0",
       resim: "media/jjk0.webp",
@@ -662,7 +671,7 @@ const filmVerisi = {
       ],
     },
   ],
-  "2026-05-26": [
+  "2026-06-04": [
     {
       baslik: "The Conjuring",
       resim: "media/theConjuring.webp",
