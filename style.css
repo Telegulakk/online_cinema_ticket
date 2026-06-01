@@ -109,7 +109,6 @@ main {
   border-radius: 10px;
   text-decoration: none;
   font-size: 16px;
-  font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
 }
 
@@ -495,7 +494,7 @@ main {
 }
 
 .payment-summary {
-  background-color: #a3a2a0;
+  background-color: #555555;
   border-radius: 12px;
   padding: 16px 24px;
   width: 100%;
