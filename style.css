@@ -1,3 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0; /* tarayıcı default 8px margin'i sıfırla */
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -6,7 +19,9 @@ body {
   line-height: 1.6;
   background-color: #0c0c0c;
   color: #ffffff;
-  padding: 10px 10px;
+  padding: 10px 15px;
+  width: 100%;
+  max-width: 100vw;
 }
 
 main {
@@ -48,16 +63,25 @@ main {
   gap: 2rem;
   padding: 20px 0;
   margin: 20px 0;
+  width: 100%;
+  left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .menu a {
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   border: 1px solid #c46517;
   border-radius: 10px;
-  padding: 5px 10px;
-  pointer-events: auto;
+  padding: 20px 30px;
+  line-height: 1.3;
+  font-weight: bold;
+  white-space: nowrap;
 }
 
 .menu a.aktif {
@@ -89,6 +113,10 @@ main {
   margin-bottom: 0;
 }
 
+.logo{
+  margin-top: 20px;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -109,7 +137,7 @@ main {
   border-radius: 10px;
   text-decoration: none;
   font-size: 16px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) ;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .times-area a:hover {
@@ -139,7 +167,7 @@ main {
   padding: 10px 5px;
   border-radius: 5px;
   text-decoration: none;
-  text-shadow: #0c0c0c  1px 1px 1px;
+  text-shadow: #0c0c0c 1px 1px 1px;
 }
 
 .select-date-area a:hover {
@@ -181,6 +209,7 @@ main {
   display: flex;
   align-items: flex-start;
   gap: 40px;
+  overflow: hidden;
 }
 
 .image-link {
@@ -233,7 +262,7 @@ main {
   border-bottom: 1px solid #c46517;
 }
 
-.description-section span{
+.description-section span {
   font-size: 1rem;
   color: #fcfcfc;
   margin: 0;
@@ -256,51 +285,6 @@ main {
   margin-bottom: 0px;
   max-width: fit-content;
   min-width: 300px;
-}
-
-@media (max-width: 768px) {
-  .ticket-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .float-resim {
-    width: 100%;
-    max-width: 280px;
-    height: auto;
-  }
-
-  .description-section {
-    max-width: 100%;
-  }
-
-  .time-row-section {
-    width: 100%;
-  }
-
-  .movie-title h2 {
-    min-width: unset;
-  }
-
-  .select-date-area {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .select-date-area a {
-    width: 90px;
-    font-size: small;
-  }
-
-  .menu {
-    gap: 0.5rem;
-  }
-
-  .menu a {
-    font-size: 0.7rem;
-    padding: 5px 7px;
-  }
 }
 
 .cinema-detail {
@@ -326,6 +310,7 @@ main {
 .site-footer {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 40px;
   background-color: #0c0c0c;
   color: rgb(255, 255, 255);
@@ -363,41 +348,29 @@ main {
   margin-bottom: 0;
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 20px 0;
-}
-
-.menu a {
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
 .seats {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .seats a {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10px;
-  height: 12px;
-  font-size: medium;
-  text-align: center;
+  width: 36px;
+  height: 36px;
   background-color: #000000;
   color: white;
-  padding: 10px 10px;
   border-radius: 8px;
   text-decoration: none;
   border: 1px solid #c46517;
+  flex-shrink: 0;
 }
 
 .seat-column {
@@ -412,38 +385,6 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.columns {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
-}
-
-.columns h2 {
-  font-size: 1rem;
-  color: #ffffff;
-  min-width: 40px;
-  text-align: center;
-}
-
-.seats a h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.Perde {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.Perde h1 {
-  margin: 0;
-  margin-top: -30px;
-  font-size: 1.5rem;
-  color: #ffffff;
-}
-
 .seats a.selected {
   background-color: #c46517;
   border-color: #c46517;
@@ -454,6 +395,45 @@ main {
   border-color: #555555;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.seats a span {
+  font-size: 1.3rem;
+  margin: 0;
+  line-height: 1;
+  pointer-events: none; /* tıklama a'ya gitsin, span'e değil */
+}
+
+.row-label {
+  font-size: 1rem;
+  color: #ffffff;
+  min-width: 20px; /* eskiden h2'ye min-width veriyordun, buraya taşı */
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.Perde {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.Perde h1 {
+  margin: 0;
+  margin-top: -30px;
+  font-size: 1.5rem;
+  color: #ffffff;
 }
 
 .info {
@@ -688,4 +668,116 @@ main {
   color: #ce2525 !important;
   font-size: 0.85rem !important;
   min-height: 18px;
+}
+
+@media (max-width: 768px) {
+  .ticket-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .float-resim {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .description-section {
+    max-width: 100%;
+  }
+
+  .time-row-section {
+    width: 100%;
+  }
+
+  .movie-title h2 {
+    min-width: unset;
+  }
+
+  .select-date-area {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .select-date-area a {
+    width: 90px;
+    font-size: small;
+  }
+
+  .menu {
+    gap: 0.5rem;
+  }
+
+  .menu a {
+    font-size: 0.7rem;
+    padding: 5px 7px;
+  }
+
+  .card-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .payment-summary {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .legend-list {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  main {
+    padding: 10px 0;
+  }
+
+  .menu a {
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+
+  .menu a h1,
+  .menu a span {
+    font-size: inherit;
+    margin: 0;
+    line-height: inherit;
+  }
+
+  main {
+    padding: 10px 15px; /* her iki tarafa eşit */
+    overflow-x: hidden;
+  }
+
+  .ticket-section {
+    width: 100%;
+    box-sizing: border-box; /* zaten var ama teyit et */
+  }
+
+  .seats a {
+    width: 30px;
+    height: 30px;
+  }
+  .seats h2 {
+    font-size: 1rem;
+  }
+
+  .Perde {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+
+  .follow-us h3 {
+    font-size: 0.95rem;
+  }
+
+  .columns {
+    gap: 0px;
+  }
+
+  .seat-column {
+    gap: 2.6px;
+  }
 }
