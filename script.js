@@ -209,8 +209,8 @@ function sayfaBaslat() {
     }
 
     document.querySelectorAll(".seat-column a").forEach((koltuk) => {
-      const sutunHarfi = koltuk.closest(".columns").querySelector("h2").textContent.trim();
-      const numara = koltuk.querySelector("h2").textContent.trim();
+      const sutunHarfi = koltuk.closest(".columns").querySelector(".row-label").textContent.trim();
+      const numara = koltuk.querySelector("span").textContent.trim();
       const koltukAdi = sutunHarfi + numara;
 
       if (doluKoltuklar.includes(koltukAdi)) {
