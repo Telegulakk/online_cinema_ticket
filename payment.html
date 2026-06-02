@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koltuk Seçimi</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/payment.css" data-sayfa-css>
+    <script src="js/data.js" defer></script>
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
@@ -22,20 +24,21 @@
         <a href="payment.html"><span>Ödeme</span></a>
     </nav>
 
-    <section class="model-overlay" id="sms-model">
-        <section class="model-kutu">
-            <h3>SMS Doğrulama</h3>
-            <p>Telefon numaranıza gönderilen 6 haneli kodu giriniz.</p>
-            <input type="text" id="sms-kod" placeholder="* * * * * *" maxlength="6">
-            <div class="model-butonlar">
-                <button id="sms-onayla">Onayla</button>
-                <button id="sms-iptal">İptal</button>
-            </div>
-            <p class="sms-hata" id="sms-hata"></p>
-        </section>
-    </section>
 
     <main class="select-seat">
+        <section class="model-overlay" id="sms-model">
+            <section class="model-kutu">
+                <h3>SMS Doğrulama</h3>
+                <p>Telefon numaranıza gönderilen 6 haneli kodu giriniz.</p>
+                <input type="text" id="sms-kod" placeholder="* * * * * *" maxlength="6">
+                <div class="model-butonlar">
+                    <button id="sms-onayla">Onayla</button>
+                    <button id="sms-iptal">İptal</button>
+                </div>
+                <p class="sms-hata" id="sms-hata"></p>
+            </section>
+        </section>
+
         <section class="card-info">
             <section class="inputs">
                 <h3>Kart Sahibinin Adı</h3>
@@ -67,7 +70,7 @@
 
     <footer class="site-footer">
         <section class="follow-us">
-            <h3>Bizi Takip Edin</h3>
+            <span>Bizi Takip Edin</span>
         </section>
 
         <section class="social-media-icons">
