@@ -1,0 +1,186 @@
+
+.select-seat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputs h3 {
+  margin: 0 0 4px 0;
+  font-size: 0.9rem;
+  color: #cccccc;
+}
+
+.inputs input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #c46517;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.inputs input:focus {
+  outline: none;
+  border-color: #e07820;
+  background-color: #222222;
+}
+
+.payment-summary {
+  background-color: #555555;
+  border-radius: 12px;
+  padding: 16px 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.payment-summary h2 {
+  margin: 0 0 12px 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #c46517;
+  padding-bottom: 8px;
+}
+
+.payment-summary h3 {
+  margin: 12px 0 0 0;
+  font-size: 1rem;
+  border-top: 1px solid #c46517;
+  padding-top: 8px;
+}
+
+.payment-summary p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #dddddd;
+}
+
+#pay-button {
+  background-color: #c46517;
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#pay-button:hover {
+  background-color: #8d450a;
+}
+
+.model-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.model-overlay.acik {
+  display: flex;
+}
+
+.model-kutu {
+  background-color: #1a1a1a;
+  border: 1px solid #c46517;
+  border-radius: 12px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+.model-kutu h3 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.model-kutu p {
+  margin: 0;
+  color: #cccccc;
+  font-size: 0.9rem;
+}
+
+.mock-kod {
+  color: #c46517 !important;
+  font-size: 0.85rem !important;
+}
+
+#sms-kod {
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 1.4rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c46517;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.model-butonlar {
+  display: flex;
+  gap: 10px;
+}
+
+.model-butonlar button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+#sms-onayla {
+  background-color: #c46517;
+  color: white;
+}
+
+#sms-onayla:hover {
+  background-color: #8d450a;
+}
+
+#sms-iptal {
+  background-color: #333333;
+  color: #cccccc;
+}
+
+#sms-iptal:hover {
+  background-color: #444444;
+}
+
+.sms-hata {
+  color: #ce2525 !important;
+  font-size: 0.85rem !important;
+  min-height: 18px;
+}
+
+@media (max-width: 768px) {
+  .card-info {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .payment-summary {
+    max-width: 100%;
+    width: 100%;
+  }
+}

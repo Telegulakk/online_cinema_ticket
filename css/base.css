@@ -1,0 +1,151 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+  line-height: 1.6;
+  background-color: #0c0c0c;
+  color: #ffffff;
+  padding: 10px 15px;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.site-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  margin-bottom: 20px;
+  background-color: #0c0c0c;
+  color: rgb(255, 255, 255);
+}
+
+.logo {
+  margin-top: 20px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  background-color: #0c0c0c;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  gap: 2rem;
+  padding: 20px 10px;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.4rem;
+  border: 1px solid #c46517;
+  border-radius: 10px;
+  padding: 20px 30px;
+  line-height: 1.3;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.menu a.aktif {
+  background-color: #c46517;
+  color: white;
+  pointer-events: none;
+  cursor: default;
+}
+
+.menu a.tamamlandi {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.menu a.tamamlandi:hover {
+  background-color: #1a3d1a;
+}
+
+.menu a.kilitli {
+  border-color: #ffffff;
+  color: #ffffff;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-size: 1.2rem;
+  background-color: #0c0c0c;
+  color: rgb(255, 255, 255);
+  padding: 100px 10px 20px;
+}
+
+.social-media-icons a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-media-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.social-media-icons a:hover {
+  transform: scale(1.1);
+}
+
+.follow-us {
+  display: flex;
+  gap: 16px;
+}
+
+.follow-us span {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    gap: 0.5rem;
+  }
+
+  .menu a {
+    font-size: 1rem;
+    padding: 15px 20px;
+  }
+
+  .menu a h1,
+  .menu a span {
+    font-size: inherit;
+    margin: 0;
+    line-height: inherit;
+  }
+
+  .follow-us span {
+    font-size: 0.95rem;
+  }
+}
+
+.model-overlay {
+  display: none;
+}

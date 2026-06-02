@@ -1,0 +1,261 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 10px 10px;
+  background-color: #0c0c0c;
+  color: #ffffff;
+}
+
+.date-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.select-date-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.select-date-area a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 50px;
+  font-size: medium;
+  text-align: center;
+  background-color: #c46517;
+  color: white;
+  padding: 10px 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-shadow: #0c0c0c 1px 1px 1px;
+}
+
+.select-date-area a:hover {
+  background-color: #8d450a;
+}
+
+.select-date-area a.secili-tarih {
+  background-color: #8d450a;
+  outline: 2px solid #ffffff;
+}
+
+.select-date-area a.tarih-bos {
+  opacity: 0.4;
+}
+
+.day h3 {
+  margin: 0;
+}
+
+.ticket-section {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  max-width: 1100px;
+  background-color: #494745;
+  padding: 20px 15px;
+  border-radius: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  overflow: hidden;
+}
+
+.image-link {
+  position: relative;
+  display: inline-block;
+  border-radius: 5%;
+  overflow: hidden;
+}
+
+.image-link::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  color: transparent;
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.3s;
+  pointer-events: none;
+}
+
+.image-link:hover::after {
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #c0c0c0;
+}
+
+.image-link img {
+  display: block;
+}
+
+.float-resim {
+  height: 377px;
+  width: 255px;
+  border-radius: 5%;
+}
+
+.description-section {
+  margin: auto;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 15px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.description-section .film-info,
+.description-section .film-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c46517;
+}
+
+.description-section span {
+  font-size: 1rem;
+  color: #fcfcfc;
+  margin: 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.title h1 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.time-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.time-row-list strong {
+  color: #fcfcfc;
+}
+
+.time-row-section {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  margin-bottom: 0px;
+  max-width: fit-content;
+  min-width: 300px;
+}
+
+.cinema-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+.movie-title h1 {
+  margin: 0;
+}
+
+.movie-title p {
+  margin: 0;
+}
+
+.times-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.times-area a {
+  background-color: #c46517;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.times-area a:hover {
+  background-color: #8d450a;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.next-week-area a {
+  display: flex;
+  padding: 5px 5px;
+  border-radius: 10px;
+  background-color: #c46517;
+}
+
+.next-week-area a:hover {
+  background-color: #8d450a;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 10px 15px;
+    overflow-x: hidden;
+  }
+
+  .ticket-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .float-resim {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .description-section {
+    max-width: 100%;
+  }
+
+  .time-row-section {
+    width: 100%;
+  }
+
+  .movie-title h2 {
+    min-width: unset;
+  }
+
+  .select-date-area {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .select-date-area a {
+    width: 90px;
+    font-size: small;
+  }
+}
