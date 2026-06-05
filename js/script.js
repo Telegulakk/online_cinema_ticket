@@ -283,8 +283,13 @@ function tarihEtiketi(date) {
   return `${date.getDate()} ${aylar[date.getMonth()]}`;
 }
 
-function tarihAnahtari(date) {
-  return date.toISOString().split("T")[0]; // "xxxx-xx-xx"
+// xxxx-xx-xx
+function tarihAnahtari(date) { 
+  const yil = date.getFullYear();
+  const ay = String(date.getMonth() + 1).padStart(2, '0');
+  const gun = String(date.getDate()).padStart(2, '0');
+  
+  return `${yil}-${ay}-${gun}`;
 }
 
 function dateAreaOlustur() {
@@ -336,8 +341,8 @@ function filmListesiOlustur(tarih) {
     .map(
       (film) => `
     <section class="ticket-section">
-      <a href="${film.trailer}" class="image-link" loading="lazy" target="_blank">
-        <img class="float-resim" src="${film.resim}" alt="${film.alt}">
+      <a href="${film.trailer}" class="image-link" target="_blank">
+        <img class="float-resim" src="${film.resim}" alt="${film.alt}" loading="lazy" >
       </a>
 
       <article class="time-row-section">
