@@ -1,5 +1,5 @@
 const filmVerisi = {
-  "2026-05-29": [
+  "2026-06-05": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -13,6 +13,7 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "18:30"] },
         { ad: "3D - DUBLAJ", saatler: ["11:00", "14:00", "19:45"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["10:00", "16:00", "21:00"] },
       ],
     },
     {
@@ -30,8 +31,23 @@ const filmVerisi = {
         { ad: "3D - DUBLAJ", saatler: ["12:00", "17:30", "21:00"] },
       ],
     },
+    {
+      baslik: "Inception",
+      resim: "media/inception.webp",
+      trailer: "https://youtu.be/YoHD9XEInc0",
+      alt: "Inception",
+      aciklama: "Rüyaların içine girerek sırları çalan bir hırsız, imkânsız bir görevle karşı karşıyadır: bir fikri zihnin derinliklerine yerleştirmek.",
+      kategori: "Bilim Kurgu, Gerilim, Aksiyon",
+      sure: "148 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["11:00", "15:00", "19:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] },
+      ],
+    },
   ],
-  "2026-05-30": [
+  "2026-06-06": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -60,6 +76,7 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["11:00", "15:00", "19:00", "22:00"] },
         { ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] },
+        { ad: "3D - ALTYAZILI", saatler: ["14:00", "20:00"] },
       ],
     },
     {
@@ -77,8 +94,24 @@ const filmVerisi = {
         { ad: "2D - DUBLAJ", saatler: ["12:00", "15:30", "19:00"] },
       ],
     },
+    {
+      baslik: "Interstellar",
+      resim: "media/interstellar.webp",
+      trailer: "https://youtu.be/zSWdZVtXT7E",
+      alt: "Interstellar",
+      aciklama: "İnsanlığın geleceğini kurtarmak için bir grup astronot, bilinen evrenin ötesine geçen tehlikeli bir yolculuğa çıkar.",
+      kategori: "Bilim Kurgu, Drama, Macera",
+      sure: "169 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "14:30", "19:30"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["12:00", "17:00", "21:30"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:00", "16:00"] },
+      ],
+    },
   ],
-  "2026-05-31": [
+  "2026-06-07": [
     {
       baslik: "Doctor Strange",
       resim: "media/drStrange.webp",
@@ -107,6 +140,7 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "16:00", "20:00"] },
         { ad: "3D - DUBLAJ", saatler: ["11:00", "15:00", "19:30"] },
+        { ad: "3D - ALTYAZILI", saatler: ["13:30", "18:00", "21:30"] },
       ],
     },
     {
@@ -121,8 +155,24 @@ const filmVerisi = {
       oyuncular: ["Patrick Wilson", "Vera Farmiga", "Ron Livingston"],
       turler: [{ ad: "2D - DUBLAJ", saatler: ["13:00", "17:00", "21:00"] }],
     },
+    {
+      baslik: "Dune: Part Two",
+      resim: "media/dune2.webp",
+      trailer: "https://youtu.be/Way9Dexny3w",
+      alt: "Dune: Part Two",
+      aciklama: "Paul Atreides, Fremenlerle birleşerek ailesinin intikamını almak ve evrenin kaderini belirleyecek savaşı başlatmak için harekete geçer.",
+      kategori: "Bilim Kurgu, Macera, Drama",
+      sure: "166 dk",
+      yonetmen: "Denis Villeneuve",
+      oyuncular: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:30", "15:00", "19:30"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["12:00", "17:00", "21:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["13:00", "18:00"] },
+      ],
+    },
   ],
-  "2026-06-01": [
+  "2026-06-08": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -153,8 +203,39 @@ const filmVerisi = {
         { ad: "2D - DUBLAJ", saatler: ["11:00", "14:30", "18:00"] },
       ],
     },
+    {
+      baslik: "Inception",
+      resim: "media/inception.webp",
+      trailer: "https://youtu.be/YoHD9XEInc0",
+      alt: "Inception",
+      aciklama: "Rüyaların içine girerek sırları çalan bir hırsız, imkânsız bir görevle karşı karşıyadır: bir fikri zihnin derinliklerine yerleştirmek.",
+      kategori: "Bilim Kurgu, Gerilim, Aksiyon",
+      sure: "148 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:30", "14:00", "18:00", "21:30"] },
+        { ad: "2D - DUBLAJ", saatler: ["12:00", "16:30", "20:00"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["11:00", "17:00"] },
+      ],
+    },
+    {
+      baslik: "Oppenheimer",
+      resim: "media/oppenheimer.webp",
+      trailer: "https://youtu.be/uYPbbksJxIg",
+      alt: "Oppenheimer",
+      aciklama: "Atom bombasını geliştiren J. Robert Oppenheimer'ın dünyayı sonsuza dek değiştiren ve kendi içindeki karanlıkla yüzleştiği hikâye.",
+      kategori: "Tarih, Drama, Biyografi",
+      sure: "180 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr."],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "14:30", "19:00"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["11:30", "16:30", "21:00"] },
+      ],
+    },
   ],
-  "2026-06-02": [
+  "2026-06-09": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -183,6 +264,7 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "15:30", "21:00"] },
         { ad: "3D - DUBLAJ", saatler: ["11:00", "17:00", "20:00"] },
+        { ad: "3D - ALTYAZILI", saatler: ["13:00", "18:30"] },
       ],
     },
     {
@@ -200,8 +282,24 @@ const filmVerisi = {
         { ad: "2D - DUBLAJ", saatler: ["14:00", "18:00", "21:30"] },
       ],
     },
+    {
+      baslik: "Dune: Part Two",
+      resim: "media/dune2.webp",
+      trailer: "https://youtu.be/Way9Dexny3w",
+      alt: "Dune: Part Two",
+      aciklama: "Paul Atreides, Fremenlerle birleşerek ailesinin intikamını almak ve evrenin kaderini belirleyecek savaşı başlatmak için harekete geçer.",
+      kategori: "Bilim Kurgu, Macera, Drama",
+      sure: "166 dk",
+      yonetmen: "Denis Villeneuve",
+      oyuncular: ["Timothée Chalamet", "Zendaya", "Rebecca Ferguson"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["11:00", "15:30", "20:00"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["13:00", "18:00", "22:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["10:00", "14:30"] },
+      ],
+    },
   ],
-  "2026-06-03": [
+  "2026-06-10": [
     {
       baslik: "Jujutsu Kaisen 0",
       resim: "media/jjk0.webp",
@@ -230,6 +328,7 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["9:00", "12:30", "16:00", "20:00"] },
         { ad: "3D - DUBLAJ", saatler: ["10:30", "14:00", "18:30"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["11:30", "17:30", "21:30"] },
       ],
     },
     {
@@ -247,8 +346,24 @@ const filmVerisi = {
         { ad: "3D - DUBLAJ", saatler: ["13:00", "17:00", "20:30"] },
       ],
     },
+    {
+      baslik: "Oppenheimer",
+      resim: "media/oppenheimer.webp",
+      trailer: "https://youtu.be/uYPbbksJxIg",
+      alt: "Oppenheimer",
+      aciklama: "Atom bombasını geliştiren J. Robert Oppenheimer'ın dünyayı sonsuza dek değiştiren ve kendi içindeki karanlıkla yüzleştiği hikâye.",
+      kategori: "Tarih, Drama, Biyografi",
+      sure: "180 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Cillian Murphy", "Emily Blunt", "Robert Downey Jr."],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:00", "14:30", "19:00"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["12:00", "17:00", "21:30"] },
+        { ad: "2D - DUBLAJ", saatler: ["11:30", "16:00"] },
+      ],
+    },
   ],
-  "2026-06-04": [
+  "2026-06-11": [
     {
       baslik: "The Conjuring",
       resim: "media/theConjuring.webp",
@@ -292,6 +407,22 @@ const filmVerisi = {
       turler: [
         { ad: "2D - ALTYAZILI", saatler: ["9:30", "12:30", "16:30", "20:00"] },
         { ad: "2D - DUBLAJ", saatler: ["11:00", "14:30", "18:30"] },
+      ],
+    },
+    {
+      baslik: "Interstellar",
+      resim: "media/interstellar.webp",
+      trailer: "https://youtu.be/zSWdZVtXT7E",
+      alt: "Interstellar",
+      aciklama: "İnsanlığın geleceğini kurtarmak için bir grup astronot, bilinen evrenin ötesine geçen tehlikeli bir yolculuğa çıkar.",
+      kategori: "Bilim Kurgu, Drama, Macera",
+      sure: "169 dk",
+      yonetmen: "Christopher Nolan",
+      oyuncular: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+      turler: [
+        { ad: "2D - ALTYAZILI", saatler: ["10:30", "15:00", "20:00"] },
+        { ad: "IMAX - ALTYAZILI", saatler: ["12:30", "17:30", "22:00"] },
+        { ad: "2D - DUBLAJ", saatler: ["13:30", "18:30"] },
       ],
     },
   ],
