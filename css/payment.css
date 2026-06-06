@@ -173,7 +173,7 @@
   min-height: 18px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .card-info {
     max-width: 100%;
     width: 100%;

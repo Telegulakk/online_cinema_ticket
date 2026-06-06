@@ -158,7 +158,7 @@
   background-color: #8d450a;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .seats a {
     width: 30px;
     height: 30px;
@@ -188,7 +188,8 @@
   }
 
   .Perde img {
-    scale: 0.55;
+      max-width: 100%;
+      height: auto;
   }
 
   .Perde h1 {

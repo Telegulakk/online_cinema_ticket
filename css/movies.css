@@ -22,6 +22,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -217,7 +218,7 @@ main {
   transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   main {
     padding: 10px 15px;
     overflow-x: hidden;

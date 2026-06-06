@@ -41,6 +41,7 @@ body {
 .menu {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   background-color: #0c0c0c;
   position: sticky;
   z-index: 100;
@@ -124,14 +125,14 @@ body {
   margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .menu {
     gap: 0.5rem;
   }
 
   .menu a {
     font-size: 1rem;
-    padding: 15px 20px;
+    padding: 12px 12px;
   }
 
   .menu a h1,
