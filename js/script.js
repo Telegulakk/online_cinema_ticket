@@ -193,7 +193,7 @@ function odemeBaslat(paymentSummary) {
 function koltukBaslat() {
   const secilenKoltuklar = [];
   const koltukSecButon = document.getElementById("choose-button");
-  const doluKoltuklar = ["A2", "B4", "C1", "F3", "G7"];
+  const doluKoltuklar = ["A2", "B4", "C1", "E8", "F3"];
 
   if (koltukSecButon) koltukSecButon.disabled = true;
 
@@ -278,12 +278,11 @@ function smsModelAc() {
 const gunIsmi = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
 
 function tarihEtiketi(date) {
-  const aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
-                 "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+  const aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran","Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
   return `${date.getDate()} ${aylar[date.getMonth()]}`;
 }
 
-// xxxx-xx-xx
+//xxxx-xx-xx
 function tarihAnahtari(date) { 
   const yil = date.getFullYear();
   const ay = String(date.getMonth() + 1).padStart(2, '0');
@@ -317,7 +316,7 @@ function dateAreaOlustur() {
     `;
 
     if (anahtar === aktifTarih) a.classList.add("secili-tarih");
-    if (!filmVerisi[anahtar]) a.classList.add("tarih-bos");
+    if (!filmData[anahtar]) a.classList.add("tarih-bos");
 
     a.addEventListener("click", (e) => {
       e.preventDefault();
@@ -331,70 +330,74 @@ function dateAreaOlustur() {
   }
 }
 
+
+
+
+
 function filmListesiOlustur(tarih) {
   const liste = document.getElementById("film-list");
   if (!liste) return;
 
-  const filmler = filmVerisi[tarih];
+  const filmler = filmData[tarih];
 
   liste.innerHTML = filmler
     .map(
       (film) => `
-    <section class="ticket-section">
-      <a href="${film.trailer}" class="image-link" target="_blank">
-        <img class="float-resim" src="${film.resim}" alt="${film.alt}" loading="lazy" >
-      </a>
+        <section class="ticket-section">
+          <a href="${film.trailer}" class="image-link" target="_blank">
+            <img class="float-resim" src="${film.resim}" alt="${film.alt}" loading="lazy" >
+          </a>
 
-      <article class="time-row-section">
-        <header class="movie-title">
-          <h1>${film.baslik}</h1>
-        </header>
-        <section class="time-row-list">
-          ${film.turler
-            .map(
-              (tur) => `
-            <section class="cinema-detail">
-              <section class="into-text cinema-detail-tech-text">
-                <strong>${tur.ad}</strong>
-              </section>
-              <section class="times-area">
-                ${tur.saatler.map((saat) => `<a href="seats.html">${saat}</a>`).join("")}
-              </section>
+          <article class="time-row-section">
+            <header class="movie-title">
+              <h1>${film.baslik}</h1>
+            </header>
+            <section class="time-row-list">
+              ${film.turler
+                .map(
+                  (tur) => `
+                <section class="cinema-detail">
+                  <section class="into-text cinema-detail-tech-text">
+                    <strong>${tur.ad}</strong>
+                  </section>
+                  <section class="times-area">
+                    ${tur.saatler.map((saat) => `<a href="seats.html">${saat}</a>`).join("")}
+                  </section>
+                </section>
+              `,
+                )
+                .join("")}
             </section>
-          `,
-            )
-            .join("")}
-        </section>
-      </article>
+          </article>
 
-      <section class="description-section">
-        <aside class="film-info">
-          <section class="film-info-1">
-            <strong>Kategori: </strong>
-            <span>${film.kategori}</span>
+          <section class="description-section">
+            <aside class="film-info">
+              <section class="film-info-1">
+                <strong>Kategori: </strong>
+                <span>${film.kategori}</span>
+              </section>
+              <section class="film-info-2">
+                <strong>Süre: </strong>
+                <span>${film.sure}</span>
+              </section>
+            </aside>
+            <aside class="film-meta">
+              <section class="film-meta-1">
+                <strong>Yönetmen: </strong>
+                <span>${film.yonetmen}</span>
+              </section>
+              <section class="film-meta-2">
+                <strong>Oyuncular: </strong>
+                <span>${film.oyuncular.join(", ")}</span>
+              </section>
+            </aside>
+            <section class="film-meta-2">
+              <strong>Konu: </strong>
+              <span>${film.aciklama}</span>
+            </section>
           </section>
-          <section class="film-info-2">
-            <strong>Süre: </strong>
-            <span>${film.sure}</span>
-          </section>
-        </aside>
-        <aside class="film-meta">
-          <section class="film-meta-1">
-            <strong>Yönetmen: </strong>
-            <span>${film.yonetmen}</span>
-          </section>
-          <section class="film-meta-2">
-            <strong>Oyuncular: </strong>
-            <span>${film.oyuncular.join(", ")}</span>
-          </section>
-        </aside>
-        <section class="film-meta-2">
-          <strong>Konu: </strong>
-          <span>${film.aciklama}</span>
         </section>
-      </section>
-    </section>
-  `,
+      `,
     )
     .join("");
 }
