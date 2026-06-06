@@ -282,7 +282,6 @@ function tarihEtiketi(date) {
   return `${date.getDate()} ${aylar[date.getMonth()]}`;
 }
 
-//xxxx-xx-xx
 function tarihAnahtari(date) { 
   const yil = date.getFullYear();
   const ay = String(date.getMonth() + 1).padStart(2, '0');
@@ -438,7 +437,6 @@ document.addEventListener("DOMContentLoaded", () => {
   sayfaBaslat();
 });
 
-// F5'te movies.html'e yönlendir
 window.addEventListener("load", () => {
   const performans = performance.getEntriesByType("navigation")[0];
   if (performans.type === "reload") {
@@ -446,7 +444,6 @@ window.addEventListener("load", () => {
   }
 });
 
-// Tarayıcı geri/ileri tuşu
 window.addEventListener("popstate", (e) => {
   if (e.state && e.state.path) {
     const hedef = e.state.path.split("/").pop();
