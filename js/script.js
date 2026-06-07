@@ -323,13 +323,32 @@ function dateAreaOlustur() {
       dateArea.querySelectorAll("a").forEach((el) => el.classList.remove("secili-tarih"));
       a.classList.add("secili-tarih");
       filmListesiOlustur(anahtar);
+      gecmisSaatleriDeaktifEt();
     });
 
     dateArea.appendChild(a);
   }
 }
 
+function gecmisSaatleriDeaktifEt() {
+  const simdi = new Date();
+  const bugun = tarihAnahtari(simdi);
+  const seciliTarih = localStorage.getItem("seciliTarih");
 
+   if (seciliTarih !== bugun) return;
+
+  const simdikiDakika = simdi.getHours() * 60 + simdi.getMinutes();
+
+  document.querySelectorAll(".times-area a").forEach((btn) => {
+    const [saat, dakika] = btn.textContent.trim().split(":").map(Number);
+    const btnDakika = saat * 60 + dakika;
+
+    if (btnDakika <= simdikiDakika) {
+      btn.classList.add("gecmis");
+      btn.style.pointerEvents = "none";
+    }
+  });
+}
 
 
 
@@ -399,6 +418,8 @@ function filmListesiOlustur(tarih) {
       `,
     )
     .join("");
+
+    gecmisSaatleriDeaktifEt();
 }
 
 document.addEventListener("click", (e) => {
