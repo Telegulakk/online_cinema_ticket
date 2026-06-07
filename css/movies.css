@@ -218,6 +218,13 @@ main {
   transform: scale(1.1);
 }
 
+.times-area a.gecmis {
+  background-color: #000000;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
 @media (max-width: 1024px) {
   main {
     padding: 10px 15px;
