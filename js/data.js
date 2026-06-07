@@ -1,5 +1,5 @@
 const filmData = {
-  "2026-06-06": [
+  "2026-06-07": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -47,7 +47,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-07": [
+  "2026-06-08": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -111,7 +111,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-08": [
+  "2026-06-09": [
     {
       baslik: "Doctor Strange",
       resim: "media/drStrange.webp",
@@ -172,7 +172,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-09": [
+  "2026-06-10": [
     {
       baslik: "Avatar: Fire and Ash",
       resim: "media/AVATAR.webp",
@@ -235,7 +235,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-10": [
+  "2026-06-11": [
     {
       baslik: "Hamnet",
       resim: "media/Hamnet.webp",
@@ -299,7 +299,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-11": [
+  "2026-06-12": [
     {
       baslik: "Jujutsu Kaisen 0",
       resim: "media/jjk0.webp",
@@ -363,7 +363,7 @@ const filmData = {
       ],
     },
   ],
-  "2026-06-12": [
+  "2026-06-13": [
     {
       baslik: "The Conjuring",
       resim: "media/theConjuring.webp",
